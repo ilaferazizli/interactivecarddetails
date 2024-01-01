@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="update.js"></script>
+  <title>Interactive card details form</title>
+
+</head>
+<body>
+  
+  <div id="container"  class="container">
+    <div class="formbg"></div>
+    <div class="cardall">
+      <div class="card"> 
+        <div class="frontcard">
+          <img class="front" src="./images/bg-card-front.png" alt="card photo" width="315px" height="170px"     >
+          <img class="logo" id="logo" src="./images/card-logo.svg" alt="card">
+          <div id="displaycardnumber" class="displaycardnumber">0000 0000 0000 0000</div>
+          <div id="displayUsername" class="displayUsername">Cardholder</div>
+          <div id="displaydate" class="displaydate">
+            <div id="displaymonth" class="displaymonth" style="position: absolute;">00</div> 
+            <div style="position: absolute; margin-left: 22px;">/</div>
+            <div id="displayyear" class="displayyear" style="position: absolute;margin-left: 32px;" >00</div> 
+          </div>
+        </div>
+        <br><br>
+        <div class="backcard">
+          <div id="displaycvv" class="displaycvv">000</div>
+          <img class="back" src="./images/bg-card-back.png" alt="card photo" width="315px" height="170px">
+        </div>
+      </div>
+   </div>
+          <div class="formall">
+              <div class="success" id="success">
+                <img class="imgg" src="images/output-onlinegiftools.gif" alt="">     
+                <p class="thank">THANK YOU!</p>
+                <p class="we-added">We've added your card details</p>
+                <button class="continue" onclick="reloadPage()">Continue</button>             
+              </div>
+            <div class="form" id="form">
+                <label for="username">CARDHOLDER NAME</label><br>
+                <input type="text" id="username" name="username" 
+                style="width:80%;" 
+                pattern="[A-Za-z ]+"
+                onkeyup="updateUsername()" 
+                onchange="validateName()"
+                required>
+                <br>
+                <span id="name-error" class="error"></span><br>
+                <label for="number"style="width:80%;">CARD NUMBER</label><br>
+                <input type="text" id="number" name="number"
+                maxlength="16" style="width:80%;" 
+                pattern="[0-9]{16}"
+                oninput="formatcardnumber(); addLogo();" 
+                onkeyup="formatcardnumber()" 
+                onchange="validatecardnumber()"
+                required> <br>
+                <span id="number-error" class="error"></span><br>
+                <div style="display: flex; padding: 4%; width: 100%; margin-left: 5%;">
+                  <div style="width: 40%;">
+                    <label for="month">EXP. DATE (MM/YY)</label><br>
+                    <input type="text" id="month" name="month" maxlength="2" 
+                    onkeyup="formatmonth()"  
+                    placeholder="MM" style="width: 30px;" pattern="[0-9]+"
+                    onchange="validateMonth()"
+                    required> 
+                    <b>/</b> 
+                    <input type="text" id="year" name="year"
+                    size="50" onkeyup="formatyear()" 
+                    style="width: 30px;" pattern="[0-9]+"
+                    onchange="validateYear()"
+                    maxlength="2" placeholder="YY"
+                    required> <br> 
+                    <span id="month-error" class="error"></span>
+                    <span id="year-error" class="error"></span>
+                  </div>
+                  <div>
+                    <label for="cvv" >CVV</label><br>
+                    <input type="text" id="cvv" name="cvv" 
+                    pattern="[0-9]+" maxlength="3" style="width: 110px;" 
+                    onkeyup="formatcvv()" placeholder="e.g. 123"  
+                    onchange="validateCVV()" required> <br>
+                    <span id="cvv-error" class="error"></span>
+                  </div>
+                </div>
+                    <input type="submit" onclick="validateForm()" class="submit" value="Confirm">
+              
+            </div>
+          </div>
+   </div>
+   
+</body>
+
+
+
+
+ 
